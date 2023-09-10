@@ -37,13 +37,22 @@ exports.createStudent = (req, res, next) => {
         FROM "${tbl}"`,
         (err, results, fields) => {
             pool.query(
-                `insert into ${tbl} (name, course, email, phone) values ($1, $2, $3, $4)`,
+                `insert into ${tbl} (name, course, email, phone) values ($1, $2, $3, $4) returning *`,
                 [name, course, email, phone],
                 (err, results, fields) => {
                     if (err) {
                         res.status(500).json({ error: 'fail insert' });
                     } else {
-                        res.status(201).json({ massage: 'Inserted successfully',});
+                        res.status(201).json({ 
+                            massage: 'Inserted successfully',
+                            insertId: results.rows[0].id,
+                            Informations: {
+                                name: results.rows[0].name,
+                                course: results.rows[0].course,
+                                email: results.rows[0].email,
+                                phone: results.rows[0].phone
+                            }
+                        });
                     }
                 }
             );
@@ -69,6 +78,56 @@ exports.getStudentById = (req, res, next) => {
                     email: results.rows[0].email,
                     phone: results.rows[0].phone,
                     _id: results.rows[0].id
+                });
+            }
+        }
+    );
+};
+
+exports.deleteStudent = (req, res, next) => {
+    const id = req.params.id;
+
+    pool.query(
+        `delete from ${tbl} where id = $1`,
+        [id],
+        (err, results, fields) => {
+            if (err) {
+                res.status(500).json({ error: 'Invalid Id' });
+            } else if (results.rowCount === 0) {
+                res.status(500).json({ error: 'Invalid Id' });
+            } else {
+                res.json({ message: `Student id: ${id} deleted successfully` });
+            }
+        }
+    );
+};
+
+exports.updateStudent = (req, res, next) => {
+    const id = req.params.id;
+    const { name, course, email, phone } = req.body;
+
+    pool.query(
+        `update ${tbl} set 
+        name = $1,
+        course = $2,
+        email = $3,
+        phone = $4 
+        where id = $5 returning *`,
+        [name, course, email, phone, id],
+        (err, results, fields) => {
+            if (err) {
+                res.status(500).json({ error: 'Invalid Id or Informations' });
+            } else if (results.rowCount === 0) {
+                res.status(500).json({ error: 'Invalid Id or Informations' });
+            } else {
+                res.json({
+                    massage: `Updated student id: ${id} successfully`,
+                    Informations: {
+                        name: results.rows[0].name,
+                        course: results.rows[0].course,
+                        email: results.rows[0].email,
+                        phone: results.rows[0].phone
+                    }
                 });
             }
         }
