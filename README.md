@@ -7,4 +7,5 @@
   
 # API URL  
   
-/user123 - user simple API for test. Note: can use x-www-form-urlencoded in POSTMAN.
+/user123 - user simple API for test. Note: can use x-www-form-urlencoded in POSTMAN.  
+/std001 - student simple API for test. Note: can use x-www-form-urlencoded in POSTMAN.  
