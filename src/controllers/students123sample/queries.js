@@ -13,6 +13,8 @@ exports.getStudents = (req, res, next) => {
                         course: row.course,
                         email: row.email,
                         phone: row.phone,
+                        created_at: row.created_at,
+                        updated_at: row.updated_at,
                         _id: row.id
                     }
                 });
@@ -50,7 +52,9 @@ exports.createStudent = (req, res, next) => {
                                 name: results.rows[0].name,
                                 course: results.rows[0].course,
                                 email: results.rows[0].email,
-                                phone: results.rows[0].phone
+                                phone: results.rows[0].phone,
+                                created_at: results.rows[0].created_at,
+                                updated_at: results.rows[0].updated_at
                             }
                         });
                     }
@@ -77,6 +81,8 @@ exports.getStudentById = (req, res, next) => {
                     course: results.rows[0].course,
                     email: results.rows[0].email,
                     phone: results.rows[0].phone,
+                    created_at: results.rows[0].created_at,
+                    updated_at: results.rows[0].updated_at,
                     _id: results.rows[0].id
                 });
             }
@@ -126,7 +132,9 @@ exports.updateStudent = (req, res, next) => {
                         name: results.rows[0].name,
                         course: results.rows[0].course,
                         email: results.rows[0].email,
-                        phone: results.rows[0].phone
+                        phone: results.rows[0].phone,
+                        created_at: results.rows[0].created_at,
+                        updated_at: results.rows[0].updated_at
                     }
                 });
             }
