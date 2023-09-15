@@ -19,10 +19,10 @@ const getUsers = (req, res, next) => {
                     if (results.length != 0) {
                         res.json(results);
                     } else {
-                        res.json({error: 'fail get'});
+                        res.json({error: 'unknown'});
                     }
                 } else {
-                    res.json({error: 'fail get'});
+                    res.json({error: 'unknown'});
                 }
             }
         );
