@@ -1,6 +1,10 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
+
+const authenticateAndSync = require('./src/db/sync');
+authenticateAndSync();
+
 const app = express();
 
 app.use(cors());
