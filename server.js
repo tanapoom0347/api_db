@@ -2,11 +2,6 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 
-const authenticateAndSync = require('./src/db/sync');
-authenticateAndSync();
-const handleDisconnect = require('./src/db/handleDisconnect');
-handleDisconnect();
-
 const app = express();
 
 app.use(cors());

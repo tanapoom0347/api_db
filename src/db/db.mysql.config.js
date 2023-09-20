@@ -1,12 +1,12 @@
-const mysql = require('mysql2');
 const { Sequelize } = require('sequelize');
 
-const conn = new mysql.createConnection({
-    host: 'localhost',
+const db_config = {
+  host: 'localhost',
     user: 'root',
     password: 'admin',
     database: 'api_db'
-});
+};
+
 
 const db = new Sequelize('api_db', 'root', 'admin', {
   host: "localhost",
@@ -14,6 +14,6 @@ const db = new Sequelize('api_db', 'root', 'admin', {
 });
 
 module.exports = {
-  conn,
+  db_config,
   db
 };
