@@ -1,4 +1,5 @@
-const { conn } = require('../../db/db.mysql.config');
+const db = require('../../db/db.mysql.config');
+const conn = db.getConnection();
 const tbl = 'users0001';
 
 const getUsers = (req, res, next) => {
