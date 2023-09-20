@@ -1,7 +1,7 @@
 const mysql = require('mysql2');
 const { Sequelize } = require('sequelize');
 
-const conn = mysql.createConnection({
+const conn = new mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: 'admin',

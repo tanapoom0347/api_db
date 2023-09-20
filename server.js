@@ -16,6 +16,4 @@ app.set('json spaces', 2);
 
 require('./src/routes/routes')(app);
 
-app.listen(process.env.PORT||3001, () => {
-    console.log(`PORT : ${process.env.PORT||3001}`);
-});
+app.listen(process.env.PORT||3001, () => console.log(`Server running at port ${process.env.PORT||3001}`));
