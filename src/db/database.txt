@@ -1,3 +1,27 @@
+// MySQL
+db_name=api_db
+CREATE TABLE products(
+id INT(11) PRIMARY KEY AUTO_INCREMENT,
+title VARCHAR(200),
+price DOUBLE,
+createdAt DATE,
+updatedAt DATE
+)ENGINE=INNODB;
+
+CREATE TABLE `api_db`.`producttest002` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NOT NULL,
+  `price` DOUBLE NOT NULL,
+  `createdAt` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updatedAt` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `name_UNIQUE` (`name` ASC))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+// PostgreSQL
+db_name=api_db
 -- postgresql
 -- database api_db
 -- table users123sample_tbl

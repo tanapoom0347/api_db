@@ -5,6 +5,16 @@ const app = express();
 
 const db = require('./src/db/db.mysql.config');
 db.init();
+const { pool } = require('./src/db/mysql2promise');
+(async () => {
+    try {
+        const connection = await pool.getConnection();
+        console.log('Connected to MySQL database');
+        connection.release();
+    } catch (error) {
+        console.error('Error connecting to MySQL:', error);
+    }
+})();
 
 app.use(cors());
 app.use(express.json());
