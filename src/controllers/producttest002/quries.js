@@ -39,8 +39,8 @@ module.exports = {
         let connection;
         try {
             connection = await pool.getConnection();
-            await connection.execute(`INSERT INTO ${tbl} (name, price) VALUES (?, ?)`, [name, price]);
-            res.status(201).json({ message: 'Data added successfully' });
+            const result = await connection.execute(`INSERT INTO ${tbl} (name, price) VALUES (?, ?)`, [name, price]);
+            res.status(201).json(result);
         } catch (error) {
             res.status(500).json({ error: error.message });
         } finally {
@@ -53,8 +53,8 @@ module.exports = {
         let connection;
         try {
             connection = await pool.getConnection();
-            await connection.execute(`UPDATE ${tbl} SET name = ?, price = ? WHERE id = ?`, [name, price, id]);
-            res.json({ message: 'Data updated successfully' });
+            const result = await connection.execute(`UPDATE ${tbl} SET name = ?, price = ? WHERE id = ?`, [name, price, id]);
+            res.json(result);
         } catch (error) {
             res.status(500).json({ error: error.message });
         } finally {
@@ -66,8 +66,8 @@ module.exports = {
         let connection;
         try {
             connection = await pool.getConnection();
-            await connection.execute(`DELETE FROM ${tbl} WHERE id = ?`, [id]);
-            res.json({ message: 'Data deleted successfully' });
+            const result = await connection.execute(`DELETE FROM ${tbl} WHERE id = ?`, [id]);
+            res.json(result);
         } catch (error) {
             res.status(500).json({ error: error.message });
         } finally {
