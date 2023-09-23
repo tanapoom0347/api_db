@@ -19,6 +19,15 @@ CREATE TABLE `api_db`.`producttest002` (
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
+create table product003 (
+id char(23) not null default left(sha2(rand(),256),23),
+name varchar(50) not null,
+price decimal(12,2) not null,
+createdAt datetime not null default current_timestamp,
+updatedAt datetime not null default current_timestamp on update current_timestamp,
+primary key (id)
+);
+
 
 // PostgreSQL
 db_name=api_db
