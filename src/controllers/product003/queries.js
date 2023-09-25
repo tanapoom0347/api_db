@@ -10,18 +10,21 @@ const getHandler = (req, res, next) => {
                     return res.status(500).json({ error: err.message });
                 }
                 if (results.length === 0) {
-                    return res.status(404).json({ error: 'Internal Server Error' });
+                    return res.status(404).json({ error: 'Not Found' });
                 }
                 res.json(results);
             });
+    } else if (Object.keys(req.query).length === 0) {
+        pool.execute('select * from ' + tbl + ' order by createdAt',
+            (err, results, fields) => {
+                if (err) {
+                    return res.status(500).json({ error: err.message });
+                }
+                res.json(results);
+            });
+    } else {
+        res.status(400).json({ error: 'Internal Server Error' });
     }
-    pool.execute('select * from ' + tbl + ' order by createdAt',
-        (err, results, fields) => {
-            if (err) {
-                return res.status(500).json({ error: err.message });
-            }
-            res.json(results);
-        });
 };
 
 const postHandler = (req, res, next) => {
