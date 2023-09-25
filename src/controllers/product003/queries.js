@@ -41,6 +41,9 @@ const postHandler = (req, res, next) => {
 const patchHandler = (req, res, next) => {
     const id = req.params.id;
     const newData = req.body;
+    if (Object.keys(newData).length === 0) {
+        return res.status(400).json({ error: 'Internal Server Error' });
+    }
     pool.query('update ?? set ? where id = ?', [tbl, newData, id],
         (err, results, fields) => {
             if (err) {
