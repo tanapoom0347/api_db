@@ -1,13 +1,15 @@
 const express = require('express');
 const router = express.Router();
 const {
-    getHandler,
-    postHandler,
-    patchHandler,
-    deleteHandler
+    getAll,
+    getById,
+    post,
+    put,
+    deleteById
 } = require('../../controllers/product003/queries');
-router.get('/', getHandler);
-router.post('/', postHandler);
-router.patch('/:id', patchHandler);
-router.delete('/:id', deleteHandler);
+router.get('/', getAll);
+router.get('/:id', getById);
+router.post('/', post);
+router.put('/:id', put);
+router.delete('/:id', deleteById);
 module.exports = router;
