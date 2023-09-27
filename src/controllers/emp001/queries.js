@@ -13,7 +13,7 @@ module.exports = {
         pool.query('select * from ?? where id = ? limit 1', [tbl, id],
             (err, rows) => {
                 if (err) return res.status(500).json({ error: err.message });
-                if (results.length === 0) return res.status(404).json({ error: 'Internal Server Error' });
+                if (rows.length === 0) return res.status(404).json({ error: 'Internal Server Error' });
                 res.json(rows[0]);
             });
     },
@@ -40,7 +40,7 @@ module.exports = {
         pool.query('delete from ?? where id = ?', [tbl, id],
             (err, rows) => {
                 if (err) return res.status(500).json({ error: err.message });
-                if (results.affectedRows === 0) return res.status(404).json({ error: 'Internal Server Error' });
+                if (rows.affectedRows === 0) return res.status(404).json({ error: 'Internal Server Error' });
                 res.json(rows);
             });
     }
