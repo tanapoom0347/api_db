@@ -28,6 +28,14 @@ updatedAt datetime not null default current_timestamp on update current_timestam
 primary key (id)
 );
 
+create table `emp001` (
+    `id` char(32) not null default left(sha2(rand(),256),23) primary key,
+    `name` varchar(150) not null,
+    `email` text not null unique,
+    `phone` varchar(25) not null,
+    `createdAt` datetime not null default current_timestamp,
+    `updatedAt` datetime on update current_timestamp not null default current_timestamp
+)charset = utf8;
 
 // PostgreSQL
 db_name=api_db
